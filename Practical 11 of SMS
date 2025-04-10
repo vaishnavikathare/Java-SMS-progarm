@@ -1,0 +1,130 @@
+class SMS{
+	public static void main(String args[])
+	{
+		RegularStudent r= new RegularStudent("Sakshi Nandedkar",'F',"IT","08-03-2000","AB+",(short)2022); 
+		DSYStudent d= new DSYStudent("Kirti Dumane",'F',"CIVIL","28-10-1999","O+",(short)2020); 
+		RegularStudent rs= new RegularStudent("Neeraj Gujrathi",'M',"EXTC","11-11-2002","B+",(short)2024);
+		System.out.println("Total Number of Students: " +Student.count);
+		System.out.println("Total Number of Regular Students: " +RegularStudent.count);
+		System.out.println("Total Number of DSY Students: " +DSYStudent.count);
+		
+		System.out.println();
+		System.out.println(r);
+		System.out.println();
+		System.out.println(d);
+		System.out.println();
+		System.out.println(rs);
+
+	}
+}
+
+class Student{
+	 static int count;
+	 private String name;
+	 private String dob;
+	 private  String bloodGroup;
+	 private String branch;
+	 private short year;
+	 private char gender;
+	
+	Student(String name,char gender,String branch,String dob,String bloodGroup,short year)
+	{
+		this.name=name;
+		this.gender=gender;
+		this.branch=branch;
+		this.dob=dob;
+		this.bloodGroup=bloodGroup;
+		this.year=year;
+		count++;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	public String getDOB()
+	{
+		return dob;
+	}
+	public String getBGroup()
+	{
+		return bloodGroup;
+	}
+	public String getBranch()
+	{
+		return branch;
+	}
+	public void setBranch(String branch)
+	{
+		this.branch=branch;
+	}
+	public short getYear()
+	{
+		return year;
+	}
+	public char getGender()
+	{
+		return gender;
+	}
+	
+}
+
+
+class RegularStudent extends Student{
+
+	static int count;
+	static int regNo;
+	String reg1;
+	static int rollno=0;
+	int roll;
+	
+	RegularStudent(String name,char gender,String branch,String dob,String bloodGroup,short year)
+	{
+		super(name,gender,branch,dob,bloodGroup,year);
+		count++;
+		regNo++;
+		reg1=generateRegister();
+		rollno++;
+		this.roll=rollno;
+	}
+	
+	String generateRegister()
+	{
+		return getYear()+"B"+getBranch().substring(0,2)+String.format("%03d",regNo);
+	}
+	
+	public String toString()
+	{
+		return "Name: "+getName()+"\nGender: "+getGender()+"\nBranch: "+getBranch()+"\nDOB: "+getDOB()+"\nBlood Group: "+getBGroup()+"\nReg:"+reg1+"\nRoll NO.: "+roll;
+	}
+}
+
+
+class DSYStudent extends Student{
+
+	static int count;
+	static int regNo=500;
+	String reg2;
+	static int rollno=65;
+	int roll;
+	
+	DSYStudent(String name,char gender,String branch,String dob,String bloodGroup,short year)
+	{
+		super(name,gender,branch,dob,bloodGroup,year);
+		count++;
+		regNo++;
+		reg2=generateRegister();
+		rollno++;
+		this.roll=rollno;
+	}
+	
+	String generateRegister()
+	{
+		return (short)getYear()+"B"+getBranch().substring(0,2)+String.format("%03d",regNo);
+	}
+	
+	public String toString()
+	{
+		return "Name: "+getName()+"\nGender: "+getGender()+"\nBranch: "+getBranch()+"\nDOB: "+getDOB()+"\nBlood Group: "+getBGroup()+"\nReg:"+reg2+"\nRoll No.: "+roll;
+	}
+}
